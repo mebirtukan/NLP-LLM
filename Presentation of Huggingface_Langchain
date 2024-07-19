@@ -1,0 +1,62 @@
+Project Presentation: Summarizing a PDF Document Using Hugging Face and LangChain
+
+1. Problem Statement
+
+The objective of this project is to create an automated summarization tool for a PDF document. Specifically, we aim to summarize a research paper titled "Review and Evaluation of Eye Movement Event Detection Algorithms" published on MDPI. Summarizing complex research papers effectively can be challenging due to their length and technical content. The goal is to leverage Natural Language Processing (NLP) technologies to extract meaningful summaries from such documents efficiently.
+
+2. Methodology
+
+To achieve the summarization, we utilized a combination of the Hugging Face library and LangChain framework. Here’s a step-by-step explanation of the methodology:
+
+Environment Setup:
+   -Package Installation: Various Python packages are installed to support document processing and summarization, including `pypdf`, `sentence-transformers`, `faiss-cpu`, `langchain`, `langchain-community`, `transformers`, and `farm-haystack`.
+
+Library Imports:
+   - The necessary libraries are imported from LangChain and other relevant packages:
+     - `PromptTemplate` and `RetrievalQA` from LangChain for prompt management and query handling.
+     - `PyPDFDirectoryLoader` for loading PDF documents.
+     - `RecursiveCharacterTextSplitter` for splitting documents into manageable chunks.
+     - `FAISS` for efficient similarity search.
+     - `HuggingFaceEmbeddings` and `HuggingFaceHub` for integrating Hugging Face models.
+
+Document Loading and Preprocessing:
+   Loading the PDF: The `PyPDFDirectoryLoader` class is used to load the PDF document from a specified directory.
+   Splitting the Document:  The document is split into smaller chunks using `RecursiveCharacterTextSplitter` to make processing more manageable. This involves creating text chunks of 1000 characters with an overlap of 200 characters.
+
+
+ Embedding and Vector Storage:
+   -Embeddings Model: `HuggingFaceEmbeddings` is initialized with the model `BAAI/bge-small-en-v1.5` to convert text chunks into vector embeddings.
+   FAISS Vector Store: The `FAISS` vector store is created to index these embeddings and enable fast similarity search.
+
+Query Processing:
+   Retrieving Relevant Documents: The `vectorstore` is queried for relevant documents based on a predefined query ("Event detection"). The results are retrieved using similarity search.
+   Setup Retriever: The `retriever` is configured for querying, specifying the number of relevant documents to retrieve (`k=3`).
+
+Summarization with Hugging Face Model
+   API Token: An API token for Hugging Face is set to access the models.
+   Model Initialization: `HuggingFaceHub` is used to initialize the model `mistralai/Mistral-7B-v0.1` for answering questions.
+   Prompt Template: A prompt template is defined to guide the summarization process, which includes providing context and asking for a concise summary.
+   RetrievalQA Chain: A `RetrievalQA` chain is created with the model, retriever, and prompt template to generate the summary.
+
+Execution and Results:
+   Executing the QA Chain: The QA chain is executed with a query to summarize the event detection algorithms.
+   Printing the Summary: The resulting summary is printed out.
+
+3. Technology and Models Used
+
+LangChain Framework: An open-source framework that facilitates the development of language models by managing prompts, chaining different tasks, and handling document processing.
+Hugging Face Models: A leading library in NLP providing pre-trained models for various tasks. For this project:
+Embeddings Model: `BAAI/bge-small-en-v1.5` for generating vector representations of text.
+ QA Model: `mistralai/Mistral-7B-v0.1` for generating summaries based on context and queries.
+FAISS: A library for efficient similarity search and clustering of dense vectors.
+
+
+
+
+
+4. Other Models and Approaches
+
+While this project specifically implements the mentioned Hugging Face model for experimentation, there are several other models and approaches available for document summarization:
+Other Embeddings Models: Models like `sentence-transformers` or `distilbert` can be used for different types of embeddings.
+Different QA Models: Other models available on Hugging Face's model hub, such as `BERT`, `GPT-3`, or `T5`, could be used for answering and summarizing queries.
+Alternative Frameworks: Libraries such as `Haystack` and `spaCy` offer alternative tools and pipelines for document processing and summarization.
