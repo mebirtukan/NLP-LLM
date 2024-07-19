@@ -1,0 +1,33 @@
+ Summary: Email Spam Detection with Machine Learning
+
+Objective:  
+This project develops a system to classify emails as spam or non-spam (ham) using machine learning techniques. It utilizes the SMSSpamCollection dataset to train and evaluate the model.
+
+Technologies Used:
+Python Libraries:
+  - NumPy & Pandas: For data manipulation and analysis.
+  -NLTK (Natural Language Toolkit: For text preprocessing, including stopword removal and lemmatization.
+   -Scikit-learn: For building and evaluating machine learning models. It includes tools like `TfidfVectorizer` for text vectorization and `MultinomialNB` for classification.
+  -Regular Expressions: For cleaning text data.
+- Machine Learning Pipeline:
+  - Text Vectorization: Converts text data into numerical format using `TfidfVectorizer`.
+  - Model Training: A Naive Bayes classifier (`MultinomialNB`) is used within a pipeline to handle the entire process from vectorization to prediction.
+
+Process Overview:
+1. Data Loading: Import the SMSSpamCollection dataset and inspect its structure.
+2. Text Cleaning & Preprocessing:
+   - Remove non-alphanumeric characters.
+   - Convert text to lowercase.
+   - Remove stopwords.
+   - Apply lemmatization to reduce words to their base forms.
+3. Model Building:
+   - Split data into training and testing sets.
+   - Use `TfidfVectorizer` to transform text data into numerical vectors.
+   - Train a Naive Bayes classifier on the transformed text data.
+4. Model Evaluation:
+   - Assess the model's performance using accuracy scores, confusion matrix, and classification report on both training and testing data.
+5. Prediction: Implement a method to predict whether new user data is spam or ham based on the trained model.
+
+Outcome:  
+The project successfully builds a spam detection system with an accuracy score evaluated on both the training and testing datasets. The model can predict the category of new email messages, providing a practical tool for email classification.
+
